@@ -5,14 +5,8 @@ Acknowledgements
 
 ## Image segmentation
 
-<div class="columns">
-  <div class="column" style="width: 47%;">
-    ![](http://lorempixel.com/400/200)
-  </div>
-  <div class="column" style="width: 47%;">
-    ![](http://lorempixel.com/400/200)
-  </div>
-</div>
+![](images/raw_brain.png)
+![](images/good_seg.png)
 
 <aside class="notes">
 So let's talk about image segmentation
@@ -38,14 +32,8 @@ favorite ones
 
 ## Parameters
 
-<div class="columns">
-  <div class="column" style="width: 47%;">
-    ![](http://lorempixel.com/400/200)
-  </div>
-  <div class="column" style="width: 47%;">
-    ![](http://lorempixel.com/400/200)
-  </div>
-</div>
+![](images/good_seg.png)
+![](images/bad_seg.png)
 
 <aside class="notes">
 Same algo different params
@@ -53,25 +41,15 @@ Same algo different params
 
 ## Picking parameters
 
-2D example
+![](images/2d_sampling_1.svg)
+
+## Picking parameters
+
+![](images/2d_sampling_2.svg)
 
 ## Objective measures
 
-## Tuner
-
-| | Before Tuner | After Tuner |
-| --: | :----: | :----: |
-| Workflow | Manual | |
-| Process | Time consuming | |
-| Confidence | Low | |
-
-## Tuner
-
-| | Before Tuner | After Tuner |
-| --: | :----: | :----: |
-| Workflow | Manual | Systematic |
-| Process | Time consuming | Fast |
-| Confidence | Low | High |
+![](images/obj_measures.svg)
 
 ## Problem characterization
 
@@ -94,147 +72,155 @@ Tasks
 from design study methodology
 </aside>
 
+## Manual pipeline
+
+![Manual pipeline](images/manual_pipeline.svg)
+
+## Tuner
+
+| | Before Tuner | After Tuner |
+| --: | :----: | :----: |
+| Workflow | Manual | |
+| Process | Time consuming | |
+| Confidence | Low | |
+
+## Tuner
+
+| | Before Tuner | After Tuner |
+| --: | :----: | :----: |
+| Workflow | Manual | Systematic |
+| Process | Time consuming | Fast |
+| Confidence | Low | High |
+
 ## Visual parameter space exploration
 
-![conceptual pipeline]()
+![conceptual pipeline](images/vpsa_pipeline.png)
 
-[@Sedlmair:2012]
-
-## Visual parameter space exploration
-
-![image segmentation pipeline]()
+[@Sedlmair:2014]
 
 ## Visual parameter space exploration
 
-![tuner pipeline]()
+![image segmentation pipeline](images/tuner_pipeline.svg)
+
+## Visual parameter space exploration
+
+![tuner pipeline](images/tuner_pipeline.svg)
 
 ## Sampling
 
-![tuner pipeline]()
+![tuner pipeline](images/tuner_pipeline.svg)
 
 ## Reconstruction
 
-![tuner pipeline]()
+![tuner pipeline](images/tuner_pipeline.svg)
 
 ## Exploration
 
-![tuner pipeline]()
+![tuner pipeline](images/tuner_pipeline.svg)
 
 ------
 
-![Tuner interface]()
+![Tuner interface](images/tuner_overview.png)
 
 ------
 
-![Response view - tuner interface]()
+![Response view - tuner interface](images/tuner_overview.png)
 
 ------
 
-![Pareto view - tuner interface]()
+![Pareto view - tuner interface](images/tuner_overview.png)
 
 ------
 
-![View controls - Tuner interface]()
+![View controls - Tuner interface](images/tuner_overview.png)
 
 ------
 
-![Histograms - Tuner interface]()
+![Histograms - Tuner interface](images/tuner_overview.png)
 
 ------
 
-![Controls - Tuner interface]()
+![Controls - Tuner interface](images/tuner_overview.png)
 
 ------
 
-![Response view blowup]()
+![Response view blowup](images/tuner_overview.png)
 
 ------
 
-![Obj 1]()
+![Obj 1](images/tuner_overview.png)
 
 ------
 
-![Obj 2]()
+![Obj 2](images/tuner_overview.png)
 
 ------
 
-![Colormap - open]()
+![Colormap - open](images/tuner_no_cf.png)
 
 ------
 
-![Colormap - filtered]()
+![Colormap - filtered](images/tuner_cf.png)
 
 ------
 
-![Response view blowup]()
+![Response view blowup](images/tuner_overview.png)
 
 ------
 
-![Pareto view blowup]()
+![Pareto view blowup](images/tuner_overview.png)
 
 ------
 
-![Pareto view points band]()
+![Pareto view points band](images/tuner_overview.png)
 
 ------
 
-![Pareto view p1]()
+![Pareto view p1](images/pareto_ex1.png)
 
 ------
 
-![Pareto view p2]()
+![Pareto view p2](images/pareto_ex2.png)
 
 ------
 
-![Pareto view blowup]()
+![Pareto view blowup](images/tuner_overview.png)
 
 
 ## Uncertainty views
 
-<div class="columns">
-  <div class="column" style="width: 47%;">
-    ### Prediction: error view
-    ![](http://lorempixel.com/400/200)
-  </div>
-  <div class="column" style="width: 47%;">
-    ### Optimization: gain view
-    ![](http://lorempixel.com/400/200)
-  </div>
-</div>
+### Prediction
+![Error view](images/error_view.png)
+
+### Optimization
+![Gain view](images/gain_view.png)
 
 ## Predictor error
 
-![Prediction error from jones paper]()
+![Prediction error from jones paper](images/error_diagram.png)
 
 [@Jones:1998]
 
 ## Predictor error
 
-![](http://lorempixel.com/400/200)
+![](images/error_view.png)
 
 ## Expected gain
 
-![Exp gain img]()
+![Exp gain img](images/exp_gain_0.png)
 
 [@Jones:1998]
 
 ## Expected gain
 
-<div class="columns">
-  <div class="column" style="width: 47%;">
-    ### Prediction: error view
-    ![before](http://lorempixel.com/400/200)
-  </div>
-  <div class="column" style="width: 47%;">
-    ![after](http://lorempixel.com/400/200)
-  </div>
-</div>
+![before](images/exp_gain_1.png)
+![after](images/exp_gain_2.png)
 
 [@Jones:1998]
 
 ## Expected gain
 
-![](http://lorempixel.com/400/200)
+![](images/gain_view.png)
 
 
 ## Systematic workflow
@@ -249,43 +235,33 @@ from design study methodology
 
 ## Integration
 
-<div class="columns">
-  <div class="column" style="width: 47%;">
-    ![sampling interface](http://lorempixel.com/400/200)
-  </div>
-  <div class="column" style="width: 47%;">
-    * Tuner runs user-defined executable
-    * CSV interface
-  </div>
-</div>
+![sampling interface](images/sampling_1.png)
+
+* Tuner runs user-defined executable
+* CSV interface
 
 ## Integration
 
-<div class="columns">
-  <div class="column" style="width: 47%;">
-    ![sampling interface](http://lorempixel.com/400/200)
-  </div>
-  <div class="column" style="width: 47%;">
-    * Inputs have upper/lower range
-    * Outputs are automatically determined
-  </div>
-</div>
+![sampling interface](images/sampling_1.png)
+
+* Inputs have upper/lower range
+* Outputs are automatically determined
 
 ## Integration
 
-![](http://lorempixel.com/400/200)
+![](images/sampling_2.png)
 
 ## Integration
 
-![](http://lorempixel.com/400/200)
+![](images/sampling_2.png)
 
 ## Integration
 
-![](http://lorempixel.com/400/200)
+![](images/sampling_2.png)
 
 ## Tuner pipeline
 
-![Pipeline img]()
+![Pipeline img](images/tuner_pipeline.svg)
 
 <aside class="notes">
 What's cool is this is a loop. We can continuously add more samples
@@ -293,31 +269,27 @@ What's cool is this is a loop. We can continuously add more samples
 
 ## Resampling
 
-![gain view]()
+![gain view](images/resamp_gain_1.png)
 
 ------
 
-![gain view]()
+![gain view](images/resamp_gain_1.png)
 
 ------
 
-![gain view]()
+![gain view](images/resamp_gain_2.png)
 
 ------
 
-![gain view]()
+![gain view](images/resamp_gain_3.png)
 
 ------
 
-![gain view]()
+![gain view](images/resamp_gain_4.png)
 
 ------
 
-![gain view]()
-
-------
-
-![gain view]()
+![gain view](images/resamp_preview.png)
 
 ## High confidence
 
@@ -331,39 +303,23 @@ What's cool is this is a loop. We can continuously add more samples
 
 What parameter settings are sensitive?
 
-![sens img]()
+![sens img](images/param_sens.png)
 
-
-## Sensitivity
-
-What parameter settings are sensitive?
-
-![non-sens img]()
 
 ## Different datasets
 
 What parameters matter at different noise levels?
 
-<div class="columns">
-  <div class="column" style="width: 47%;">
-    ![No noise](http://lorempixel.com/400/200)
-  </div>
-  <div class="column" style="width: 47%;">
-    ![10&lambda; noise](http://lorempixel.com/400/200)
-  </div>
-</div>
+![No noise](images/no_noise.png)
+
+![10&lambda; noise](images/some_noise.png)
 
 ## Thanks!
 
-<div class="columns">
-  <div class="column" style="width: 47%;">
-    ![Tuner img]()
-  </div>
-  <div class="column" style="width: 47%;">
-    thomas.torsney-weir@univie.ac.at
+![Tuner img](images/tuner_overview.png)
 
-    http://tuner.cs.univie.ac.at/
-  </div>
-</div>
+thomas.torsney-weir@univie.ac.at
+
+http://tuner.cs.univie.ac.at/
 
 
