@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Thomas Torsney-Weir, VDA research group, University of Vienna">
+  <title>Tuner</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="theme.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Tuner</h1>
+  <p class="author">Thomas Torsney-Weir</p>
+  <p class="author">VDA research group</p>
+  <p class="author">University of Vienna</p>
+</section>
+
+<section class="slide level2">
+
+<h2>Acknowledgements</h2>
+
+<div style="display: flex; flex-wrap: wrap;">
+  <figure style="flex: 1; width=33%;">
+    <img src="images/torsten.jpg" />
+    <figcaption>Torsten Moeller</figcaption>
+  </figure>
+
+  <figure style="flex: 1; width=33%;">
+    <img src="images/ahmed.png" />
+    <figcaption>Ahmed Saad</figcaption>
+  </figure>
+
+  <figure style="flex: 1; width=33%;">
+    <img src="images/britta.png" />
+    <figcaption>Britta Weber</figcaption>
+  </figure>
+
+  <figure style="flex: 1; width=33%;">
+    <img src="images/bergner.png" />
+    <figcaption>Steven Bergner</figcaption>
+  </figure>
+
+  <figure style="flex: 1; width=33%;">
+    <img src="images/hege.png" />
+    <figcaption>Hans-Christian Hege</figcaption>
+  </figure>
+
+  <figure style="flex: 1; width=33%;">
+    <img src="images/verbavatz.png" />
+    <figcaption>Jean-Marc Verbavatz</figcaption>
+  </figure>
+</div>
+
+</section>
+
+<section id="image-segmentation" class="slide level2">
+<h2>Image segmentation</h2>
+<div class="columns">
+  <div class="column">
+    <img src="images/raw_brain.png" /> 
+  </div>
+  <div class="column">
+    <img src="images/good_seg.png" />
+  </div>
+</div>
+<aside class="notes">
+So let's talk about image segmentation
+</aside>
+</section>
+
+<section id="algorithms" class="slide level2">
+<h2>Algorithms</h2>
+<ul>
+<li>Snakes</li>
+<li></li>
+</ul>
+<aside class="notes">
+Many different algorithms and it's attractive as CS people to find favorite ones
+</aside>
+</section>
+<section id="parameters" class="slide level2">
+<h2>Parameters</h2>
+<h3 id="variational-methods">Variational methods</h3>
+<ul>
+<li>Noise filtering</li>
+<li>Regularization</li>
+<li>???</li>
+</ul>
+</section>
+<section id="parameters-1" class="slide level2">
+<h2>Parameters</h2>
+<div class="columns">
+  <div class="column">
+    <img src="images/good_seg.png" /> 
+  </div>
+  <div class="column">
+    <img src="images/bad_seg.png" />
+  </div>
+</div>
+<aside class="notes">
+Same algo different params
+</aside>
+</section>
+<section id="picking-parameters" class="slide level2">
+<h2>Picking parameters</h2>
+<figure>
+<img src="images/2d_sampling_1.svg" />
+</figure>
+</section>
+<section id="picking-parameters-1" class="slide level2">
+<h2>Picking parameters</h2>
+<figure>
+<img src="images/2d_sampling_2.svg" />
+</figure>
+</section>
+<section id="objective-measures" class="slide level2">
+<h2>Objective measures</h2>
+<figure>
+<img src="images/obj_measures.svg" />
+</figure>
+</section>
+
+<section id="problem-characterization" class="slide level2">
+<h2>Problem characterization</h2>
+<dl>
+<dt>Users</dt>
+<dd>Segmentation algorithm developers
+</dd>
+<dt>Data</dt>
+<dd>Segmentation algorithm (continuous) 
+  <ul>
+    <li>inputs: parameters (several) </li>
+    <li>outputs: objective measures (several)</li>
+  </ul>
+</dd>
+<dt>Tasks</dt>
+<dd><ul>
+<li>&quot;Best&quot; parameter setting</li>
+<li>Range of possible performance</li>
+<li>Tradeoffs amongst objective measures</li>
+<li>Sensitivity of parameters</li>
+<li>How many simulations to run?</li>
+</ul>
+</dd>
+</dl>
+<aside class="notes">
+from design study methodology
+</aside>
+</section>
+
+<section id="manual-pipeline" class="slide level2">
+<h2>Manual pipeline</h2>
+<figure>
+<img src="images/manual_pipeline.svg" alt="Manual pipeline" />
+</figure>
+</section>
+
+<section id="tuner" class="slide level2">
+<h2>Tuner</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: center;">Before Tuner</th>
+<th style="text-align: center;">After Tuner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Workflow</td>
+<td style="text-align: center;">Manual</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Process</td>
+<td style="text-align: center;">Time consuming</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Confidence</td>
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tuner-1" class="slide level2">
+<h2>Tuner</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: center;">Before Tuner</th>
+<th style="text-align: center;">After Tuner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Workflow</td>
+<td style="text-align: center;">Manual</td>
+<td style="text-align: center;">Systematic</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Process</td>
+<td style="text-align: center;">Time consuming</td>
+<td style="text-align: center;">Fast</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Confidence</td>
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;">High</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section id="visual-parameter-space-exploration" class="slide level2">
+<h2>Visual parameter space exploration</h2>
+<figure>
+<img src="images/vpsa_pipeline.png" alt="conceptual pipeline" /><figcaption>Conceptual pipeline</figcaption>
+</figure>
+<p><span class="citation" data-cites="Sedlmair:2014">[@Sedlmair:2014]</span></p>
+</section>
+
+<section id="visual-parameter-space-exploration-1" class="slide level2">
+<h2>Visual parameter space exploration</h2>
+<figure>
+<img src="images/tuner_pipeline.svg" alt="image segmentation pipeline" />
+</figure>
+</section>
+
+<section id="sampling" class="slide level2">
+<h2>Sampling</h2>
+<figure>
+<img src="images/tuner_pipeline.svg" alt="tuner pipeline" />
+</figure>
+</section>
+
+<section id="reconstruction" class="slide level2">
+<h2>Reconstruction</h2>
+<figure>
+<img src="images/tuner_pipeline.svg" alt="tuner pipeline" />
+</figure>
+</section>
+
+<section id="exploration" class="slide level2">
+<h2>Exploration</h2>
+<figure>
+<img src="images/tuner_pipeline.svg" alt="tuner pipeline" />
+</figure>
+</section>
+
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_overview.png" alt="Tuner interface" />
+</figure>
+</section>
+
+<section class="slide level2">
+
+<svg class="annotation">
+  <rect x="190" y="40" width="450" height="340" />
+</svg>
+
+<figure>
+<img src="images/tuner_overview.png" alt="Response view - tuner interface" />
+<figcaption>Response view</figcaption>
+</figure>
+</section>
+
+<section class="slide level2">
+
+<svg class="annotation">
+  <rect x="20" y="40" width="180" height="180" />
+</svg>
+
+<figure>
+<img src="images/tuner_overview.png" alt="Pareto view - tuner interface" /><figcaption>Pareto view</figcaption>
+</figure>
+</section>
+
+<section class="slide level2">
+
+<svg class="annotation">
+  <rect x="20" y="210" width="180" height="90" />
+</svg>
+
+<figure>
+<img src="images/tuner_overview.png" alt="View controls - Tuner interface" />
+<figcaption>View controls</figcaption>
+</figure>
+</section>
+
+<section class="slide level2">
+
+<svg class="annotation">
+  <rect x="20" y="270" width="180" height="250" />
+</svg>
+
+<figure>
+<img src="images/tuner_overview.png" alt="Histograms - Tuner interface" />
+<figcaption>Histograms</figcaption>
+</figure>
+</section>
+
+<section class="slide level2">
+
+<svg class="annotation">
+  <rect x="190" y="370" width="450" height="160" />
+</svg>
+
+<figure>
+<img src="images/tuner_overview.png" alt="Controls - Tuner interface" />
+<figcaption>Controls</figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_overview.png" alt="Response view blowup" />
+<figcaption>Response view blowup</figcaption>
+</figure>
+</section>
+
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_overview.png" alt="Obj 1" /><figcaption>Obj 1</figcaption>
+</figure>
+</section>
+
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_overview.png" alt="Obj 2" /><figcaption>Obj 2</figcaption>
+</figure>
+</section>
+
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_no_cf.png" alt="Colormap - open" /><figcaption>Colormap - open</figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_cf.png" alt="Colormap - filtered" /><figcaption>Colormap - filtered</figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_overview.png" alt="Response view blowup" /><figcaption>Response view blowup</figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_overview.png" alt="Pareto view blowup" /><figcaption>Pareto view blowup</figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_overview.png" alt="Pareto view points band" /><figcaption>Pareto view points band</figcaption>
+</figure>
+</section>
+
+<section class="slide level2">
+
+<svg class="annotation">
+  <circle cx="190" cy="370" r="35" />
+</svg>
+
+<figure>
+<img src="images/pareto_ex1.png" alt="Pareto view p1" /><figcaption>Pareto view p1</figcaption>
+</figure>
+</section>
+
+<section class="slide level2">
+
+<svg class="annotation">
+  <circle cx="190" cy="370" r="35" />
+</svg>
+
+<figure>
+<img src="images/pareto_ex2.png" alt="Pareto view p2" /><figcaption>Pareto view p2</figcaption>
+</figure>
+</section>
+
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_overview.png" alt="Pareto view blowup" /><figcaption>Pareto view blowup</figcaption>
+</figure>
+</section>
+
+<section id="uncertainty-views" class="slide level2">
+<h2>Uncertainty views</h2>
+
+<div class="columns">
+  <div class="column">
+    <h3 id="prediction">Prediction</h3>
+    <figure>
+    <img src="images/error_view.png" alt="Error view" /><figcaption>Error view</figcaption>
+    </figure>
+  </div>
+  <div class="column">
+    <h3 id="optimization">Optimization</h3>
+    <figure>
+    <img src="images/gain_view.png" alt="Gain view" /><figcaption>Gain view</figcaption>
+    </figure>
+  </div>
+</div>
+</section>
+
+<section id="predictor-error" class="slide level2">
+<h2>Predictor error</h2>
+<figure>
+<img src="images/error_diagram.png" alt="Prediction error from jones paper" />
+</figure>
+<p><span class="citation" data-cites="Jones:1998">[@Jones:1998]</span></p>
+</section>
+<section id="predictor-error-1" class="slide level2">
+<h2>Predictor error</h2>
+<figure>
+<img src="images/error_view.png" />
+</figure>
+</section>
+
+<section id="expected-gain" class="slide level2">
+<h2>Expected gain</h2>
+<figure>
+<img src="images/exp_gain_0.png" alt="Exp gain img" />
+</figure>
+<p><span class="citation" data-cites="Jones:1998">[@Jones:1998]</span></p>
+</section>
+
+<section id="expected-gain-1" class="slide level2">
+<h2>Expected gain</h2>
+<div class="columns">
+  <div class="column">
+    <img src="images/exp_gain_1.png" alt="before" /> 
+  </div>
+  <div class="column">
+    <img src="images/exp_gain_2.png" alt="after" /></p>
+  </div>
+</div>
+<p><span class="citation" data-cites="Jones:1998">[@Jones:1998]</span></p>
+</section>
+
+<section id="expected-gain-2" class="slide level2">
+<h2>Expected gain</h2>
+<figure>
+<img src="images/gain_view.png" />
+</figure>
+</section>
+
+<section id="systematic-workflow" class="slide level2">
+<h2>Systematic workflow</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: center;">Before Tuner</th>
+<th style="text-align: center;">After Tuner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Workflow</td>
+<td style="text-align: center;">Manual</td>
+<td style="text-align: center;">Systematic</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Process</td>
+<td style="text-align: center;">Time consuming</td>
+<td style="text-align: center;">Fast</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Confidence</td>
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;">High</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section id="integration" class="slide level2">
+<h2>Integration</h2>
+
+<div class="columns">
+  <div class="column">
+    <figure>
+    <img src="images/sampling_1.png" alt="sampling interface" /><figcaption>sampling interface</figcaption>
+    </figure>
+  </div>
+  <div class="column">
+    <ul>
+    <li>Tuner runs user-defined executable</li>
+    <li>CSV interface</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<section id="integration-1" class="slide level2">
+<h2>Integration</h2>
+
+<div class="columns">
+  <div class="column">
+    <figure>
+    <img src="images/sampling_1.png" alt="sampling interface" /><figcaption>sampling interface</figcaption>
+    </figure>
+  </div>
+  <div class="column">
+    <ul>
+    <li>Inputs have upper/lower range</li>
+    <li>Outputs are automatically determined</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<section id="integration-2" class="slide level2">
+<h2>Integration</h2>
+<figure>
+<img src="images/sampling_2.png" />
+</figure>
+</section>
+
+<section id="integration-3" class="slide level2">
+<h2>Integration</h2>
+<figure>
+<img src="images/sampling_2.png" />
+</figure>
+</section>
+
+<section id="integration-4" class="slide level2">
+<h2>Integration</h2>
+<figure>
+<img src="images/sampling_2.png" />
+</figure>
+</section>
+
+<section id="tuner-pipeline" class="slide level2">
+<h2>Tuner pipeline</h2>
+<figure>
+<img src="images/tuner_pipeline.svg" alt="Pipeline img" /><figcaption>Pipeline img</figcaption>
+</figure>
+<aside class="notes">
+What's cool is this is a loop. We can continuously add more samples
+</aside>
+</section>
+
+<section id="resampling" class="slide level2">
+<h2>Resampling</h2>
+<figure>
+<img src="images/resamp_gain_1.png" alt="gain view" /><figcaption>gain view</figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="images/resamp_gain_1.png" alt="gain view" /><figcaption>gain view</figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="images/resamp_gain_2.png" alt="gain view" /><figcaption>gain view</figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="images/resamp_gain_3.png" alt="gain view" /><figcaption>gain view</figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="images/resamp_gain_4.png" alt="gain view" /><figcaption>gain view</figcaption>
+</figure>
+</section>
+<section class="slide level2">
+
+<figure>
+<img src="images/resamp_preview.png" alt="gain view" /><figcaption>gain view</figcaption>
+</figure>
+</section>
+<section id="high-confidence" class="slide level2">
+<h2>High confidence</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;"></th>
+<th style="text-align: center;">Before Tuner</th>
+<th style="text-align: center;">After Tuner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">Workflow</td>
+<td style="text-align: center;">Manual</td>
+<td style="text-align: center;">Systematic</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">Process</td>
+<td style="text-align: center;">Time consuming</td>
+<td style="text-align: center;">Fast</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">Confidence</td>
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;">High</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section id="sensitivity" class="slide level2">
+<h2>Sensitivity</h2>
+<p>What parameter settings are sensitive?</p>
+
+<svg class="annotation">
+  <rect x="165" y="115" width="28" height="415" />
+</svg>
+
+<svg class="annotation">
+  <rect x="290" y="390" width="130" height="135" />
+</svg>
+
+<figure>
+<img src="images/param_sens.png" alt="sens img" /><figcaption>sens img</figcaption>
+</figure>
+</section>
+
+<section id="different-datasets" class="slide level2">
+<h2>Different datasets</h2>
+<p>What parameters matter at different noise levels?</p>
+<div class="columns">
+  <div class="column">
+    <svg class="annotation">
+      <rect x="45" y="260" width="370" height="100" />
+    </svg>
+
+    <figure>
+    <img src="images/no_noise.png" alt="No noise" /><figcaption>No noise</figcaption>
+    </figure>
+  </div>
+  <div class="column">
+    <svg class="annotation">
+      <rect x="45" y="260" width="370" height="100" />
+    </svg>
+
+    <figure>
+    <img src="images/some_noise.png" alt="10λ noise" /><figcaption>10λ noise</figcaption>
+    </figure>
+  </div>
+</div>
+</section>
+
+<section id="thanks" class="slide level2">
+<h2>Thanks!</h2>
+
+<div class="columns">
+  <div class="column">
+    <figure>
+    <img src="images/tuner_overview.png" alt="Tuner img" />
+    </figure>
+  </div>
+  <div class="column">
+    <p>thomas.torsney-weir@univie.ac.at</p>
+    <p>http://tuner.cs.univie.ac.at/</p>
+  </div>
+</div>
+</section>
+
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        transition: 'none',
+        slideNumber: true,
+        center: false,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
