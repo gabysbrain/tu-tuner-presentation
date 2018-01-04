@@ -28,10 +28,11 @@
     <div class="slides">
 
 <section>
-  <h1 class="title">Tuner</h1>
-  <p class="author">Thomas Torsney-Weir</p>
-  <p class="author">VDA research group</p>
-  <p class="author">University of Vienna</p>
+  <div class="middled">
+    <h1 class="title">Tuner</h1>
+    <p class="author">Thomas Torsney-Weir</p>
+    <p class="author">VDA research group, University of Vienna</p>
+  </div>
 </section>
 
 <section class="slide level2">
@@ -79,7 +80,7 @@
     <img src="images/raw_brain.png" /> 
   </div>
   <div class="column">
-    <img src="images/good_seg.png" />
+    <img src="images/good_seg.png" class="fragment" />
   </div>
 </div>
 <aside class="notes">
@@ -90,13 +91,17 @@ So let's talk about image segmentation
 <section id="algorithms" class="slide level2">
 <h2>Algorithms</h2>
 <ul>
+<li>Thresholding</li>
 <li>Snakes</li>
-<li></li>
+<li>Watershed</li>
+<li>Graph cuts</li>
+<li>Variational methods</li>
 </ul>
 <aside class="notes">
 Many different algorithms and it's attractive as CS people to find favorite ones
 </aside>
 </section>
+
 <section id="parameters" class="slide level2">
 <h2>Parameters</h2>
 <h3 id="variational-methods">Variational methods</h3>
@@ -106,6 +111,7 @@ Many different algorithms and it's attractive as CS people to find favorite ones
 <li>???</li>
 </ul>
 </section>
+
 <section id="parameters-1" class="slide level2">
 <h2>Parameters</h2>
 <div class="columns">
@@ -120,18 +126,21 @@ Many different algorithms and it's attractive as CS people to find favorite ones
 Same algo different params
 </aside>
 </section>
+
 <section id="picking-parameters" class="slide level2">
 <h2>Picking parameters</h2>
 <figure>
 <img src="images/2d_sampling_1.svg" />
 </figure>
 </section>
+
 <section id="picking-parameters-1" class="slide level2">
 <h2>Picking parameters</h2>
 <figure>
 <img src="images/2d_sampling_2.svg" />
 </figure>
 </section>
+
 <section id="objective-measures" class="slide level2">
 <h2>Objective measures</h2>
 <figure>
@@ -203,6 +212,7 @@ from design study methodology
 </tbody>
 </table>
 </section>
+
 <section id="tuner-1" class="slide level2">
 <h2>Tuner</h2>
 <table>
@@ -236,9 +246,15 @@ from design study methodology
 <section id="visual-parameter-space-exploration" class="slide level2">
 <h2>Visual parameter space exploration</h2>
 <figure>
-<img src="images/vpsa_pipeline.png" alt="conceptual pipeline" /><figcaption>Conceptual pipeline</figcaption>
+<img src="images/vpsa_pipeline.png" alt="conceptual pipeline" />
 </figure>
-<p><span class="citation" data-cites="Sedlmair:2014">[@Sedlmair:2014]</span></p>
+<p>
+<span class="citation" data-cites="Sedlmair:2014">
+  Michael Sedlmair, Christoph Heinzl, Stefan Bruckner, Harald Piringer, and Torsten Möller
+  &quot;Visual parameter space analysis: A conceptual framework&quot;
+  IEEE Transactions on Visualization and Computer Graphics. 20(12) 2014.
+</span>
+</p>
 </section>
 
 <section id="visual-parameter-space-exploration-1" class="slide level2">
@@ -250,6 +266,11 @@ from design study methodology
 
 <section id="sampling" class="slide level2">
 <h2>Sampling</h2>
+
+<svg class="annotation">
+  <circle cx="125" cy="220" r="27" />
+</svg>
+
 <figure>
 <img src="images/tuner_pipeline.svg" alt="tuner pipeline" />
 </figure>
@@ -257,6 +278,12 @@ from design study methodology
 
 <section id="reconstruction" class="slide level2">
 <h2>Reconstruction</h2>
+
+<svg class="annotation">
+  <rect x="700" y="400" width="100" height="150" />
+</svg>
+
+
 <figure>
 <img src="images/tuner_pipeline.svg" alt="tuner pipeline" />
 </figure>
@@ -264,6 +291,11 @@ from design study methodology
 
 <section id="exploration" class="slide level2">
 <h2>Exploration</h2>
+
+<svg class="annotation">
+  <rect x="390" y="20" width="440" height="290" />
+</svg>
+
 <figure>
 <img src="images/tuner_pipeline.svg" alt="tuner pipeline" />
 </figure>
@@ -279,7 +311,7 @@ from design study methodology
 <section class="slide level2">
 
 <svg class="annotation">
-  <rect x="190" y="40" width="450" height="340" />
+  <rect x="340" y="40" width="450" height="340" />
 </svg>
 
 <figure>
@@ -291,7 +323,7 @@ from design study methodology
 <section class="slide level2">
 
 <svg class="annotation">
-  <rect x="20" y="40" width="180" height="180" />
+  <rect x="170" y="40" width="180" height="180" />
 </svg>
 
 <figure>
@@ -302,7 +334,7 @@ from design study methodology
 <section class="slide level2">
 
 <svg class="annotation">
-  <rect x="20" y="210" width="180" height="90" />
+  <rect x="170" y="210" width="180" height="90" />
 </svg>
 
 <figure>
@@ -314,7 +346,7 @@ from design study methodology
 <section class="slide level2">
 
 <svg class="annotation">
-  <rect x="20" y="270" width="180" height="250" />
+  <rect x="170" y="270" width="180" height="250" />
 </svg>
 
 <figure>
@@ -326,7 +358,7 @@ from design study methodology
 <section class="slide level2">
 
 <svg class="annotation">
-  <rect x="190" y="370" width="450" height="160" />
+  <rect x="340" y="370" width="450" height="160" />
 </svg>
 
 <figure>
@@ -334,85 +366,84 @@ from design study methodology
 <figcaption>Controls</figcaption>
 </figure>
 </section>
+
+<section class="slide level2">
+
+<figure>
+<img src="images/response_view.png" alt="Response view blowup" />
+</figure>
+
+<aside class="notes">
+  talk about layout and 2 objectives
+</aside>
+</section>
+
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_no_cf.png" alt="Colormap - open" />
+</figure>
+
+<aside class="notes">
+  colormap is interactive
+</aside>
+</section>
+
+<section class="slide level2">
+
+<figure>
+<img src="images/tuner_cf.png" alt="Colormap - filtered" />
+</figure>
+
+<aside class="notes">
+  colormap is interactive
+</aside>
+</section>
+
 <section class="slide level2">
 
 <figure>
 <img src="images/tuner_overview.png" alt="Response view blowup" />
-<figcaption>Response view blowup</figcaption>
-</figure>
-</section>
-
-<section class="slide level2">
-
-<figure>
-<img src="images/tuner_overview.png" alt="Obj 1" /><figcaption>Obj 1</figcaption>
-</figure>
-</section>
-
-<section class="slide level2">
-
-<figure>
-<img src="images/tuner_overview.png" alt="Obj 2" /><figcaption>Obj 2</figcaption>
-</figure>
-</section>
-
-<section class="slide level2">
-
-<figure>
-<img src="images/tuner_no_cf.png" alt="Colormap - open" /><figcaption>Colormap - open</figcaption>
 </figure>
 </section>
 <section class="slide level2">
 
 <figure>
-<img src="images/tuner_cf.png" alt="Colormap - filtered" /><figcaption>Colormap - filtered</figcaption>
-</figure>
-</section>
-<section class="slide level2">
-
-<figure>
-<img src="images/tuner_overview.png" alt="Response view blowup" /><figcaption>Response view blowup</figcaption>
-</figure>
-</section>
-<section class="slide level2">
-
-<figure>
-<img src="images/tuner_overview.png" alt="Pareto view blowup" /><figcaption>Pareto view blowup</figcaption>
-</figure>
-</section>
-<section class="slide level2">
-
-<figure>
-<img src="images/tuner_overview.png" alt="Pareto view points band" /><figcaption>Pareto view points band</figcaption>
+<img src="images/pareto_view.png" alt="Pareto view blowup" />
 </figure>
 </section>
 
 <section class="slide level2">
 
 <svg class="annotation">
-  <circle cx="190" cy="370" r="35" />
+  <ellipse cx="540" cy="350" rx="200" ry="40" />
+  <ellipse cx="700" cy="240" rx="40" ry="200" />
 </svg>
 
 <figure>
-<img src="images/pareto_ex1.png" alt="Pareto view p1" /><figcaption>Pareto view p1</figcaption>
+<img src="images/pareto_view.png" alt="Pareto view points band" />
 </figure>
 </section>
 
 <section class="slide level2">
 
 <svg class="annotation">
-  <circle cx="190" cy="370" r="35" />
+  <circle cx="275" cy="157" r="13" />
 </svg>
 
 <figure>
-<img src="images/pareto_ex2.png" alt="Pareto view p2" /><figcaption>Pareto view p2</figcaption>
+<img src="images/pareto_ex1.png" alt="Pareto view p1" />
 </figure>
 </section>
 
 <section class="slide level2">
 
+<svg class="annotation">
+  <circle cx="323" cy="157" r="13" />
+</svg>
+
 <figure>
-<img src="images/tuner_overview.png" alt="Pareto view blowup" /><figcaption>Pareto view blowup</figcaption>
+<img src="images/pareto_ex2.png" alt="Pareto view p2" />
 </figure>
 </section>
 
@@ -440,8 +471,15 @@ from design study methodology
 <figure>
 <img src="images/error_diagram.png" alt="Prediction error from jones paper" />
 </figure>
-<p><span class="citation" data-cites="Jones:1998">[@Jones:1998]</span></p>
+<p>
+<span class="citation" data-cites="Jones:1998">
+	Donald R. Jones, Matthias Schonlau, and William J. Welch
+  &quot;Efficient global optimization of expensive black-box functions.&quot;
+  Journal of Global Optimization. 13(4) 1998.
+</span>
+</p>
 </section>
+
 <section id="predictor-error-1" class="slide level2">
 <h2>Predictor error</h2>
 <figure>
@@ -454,7 +492,13 @@ from design study methodology
 <figure>
 <img src="images/exp_gain_0.png" alt="Exp gain img" />
 </figure>
-<p><span class="citation" data-cites="Jones:1998">[@Jones:1998]</span></p>
+<p>
+<span class="citation" data-cites="Jones:1998">
+	Donald R. Jones, Matthias Schonlau, and William J. Welch
+  &quot;Efficient global optimization of expensive black-box functions.&quot;
+  Journal of Global Optimization. 13(4) 1998.
+</span>
+</p>
 </section>
 
 <section id="expected-gain-1" class="slide level2">
@@ -467,7 +511,13 @@ from design study methodology
     <img src="images/exp_gain_2.png" alt="after" /></p>
   </div>
 </div>
-<p><span class="citation" data-cites="Jones:1998">[@Jones:1998]</span></p>
+<p>
+<span class="citation" data-cites="Jones:1998">
+	Donald R. Jones, Matthias Schonlau, and William J. Welch
+  &quot;Efficient global optimization of expensive black-box functions.&quot;
+  Journal of Global Optimization. 13(4) 1998.
+</span>
+</p>
 </section>
 
 <section id="expected-gain-2" class="slide level2">
@@ -512,6 +562,10 @@ from design study methodology
 
 <div class="columns">
   <div class="column">
+    <svg class="annotation">
+      <rect x="60" y="160" width="370" height="80" />
+    </svg>
+
     <figure>
     <img src="images/sampling_1.png" alt="sampling interface" /><figcaption>sampling interface</figcaption>
     </figure>
@@ -530,8 +584,12 @@ from design study methodology
 
 <div class="columns">
   <div class="column">
+    <svg class="annotation">
+      <rect x="60" y="220" width="370" height="240" />
+    </svg>
+
     <figure>
-    <img src="images/sampling_1.png" alt="sampling interface" /><figcaption>sampling interface</figcaption>
+    <img src="images/sampling_1.png" alt="sampling interface" />
     </figure>
   </div>
   <div class="column">
@@ -545,6 +603,10 @@ from design study methodology
 
 <section id="integration-2" class="slide level2">
 <h2>Integration</h2>
+    <svg class="annotation">
+      <rect x="310" y="90" width="340" height="80" />
+    </svg>
+
 <figure>
 <img src="images/sampling_2.png" />
 </figure>
@@ -552,6 +614,10 @@ from design study methodology
 
 <section id="integration-3" class="slide level2">
 <h2>Integration</h2>
+    <svg class="annotation">
+      <rect x="310" y="160" width="340" height="330" />
+    </svg>
+
 <figure>
 <img src="images/sampling_2.png" />
 </figure>
@@ -559,6 +625,10 @@ from design study methodology
 
 <section id="integration-4" class="slide level2">
 <h2>Integration</h2>
+    <svg class="annotation">
+      <rect x="580" y="470" width="70" height="40" />
+    </svg>
+
 <figure>
 <img src="images/sampling_2.png" />
 </figure>
@@ -567,7 +637,7 @@ from design study methodology
 <section id="tuner-pipeline" class="slide level2">
 <h2>Tuner pipeline</h2>
 <figure>
-<img src="images/tuner_pipeline.svg" alt="Pipeline img" /><figcaption>Pipeline img</figcaption>
+<img src="images/tuner_pipeline.svg" alt="Pipeline img" />
 </figure>
 <aside class="notes">
 What's cool is this is a loop. We can continuously add more samples
@@ -577,39 +647,57 @@ What's cool is this is a loop. We can continuously add more samples
 <section id="resampling" class="slide level2">
 <h2>Resampling</h2>
 <figure>
-<img src="images/resamp_gain_1.png" alt="gain view" /><figcaption>gain view</figcaption>
+<img src="images/resamp_gain_1.png" alt="gain view" />
 </figure>
 </section>
+
+<section class="slide level2">
+
+<svg class="annotation">
+  <circle cx="235" cy="335" r="25" />
+</svg>
+
+<figure>
+<img src="images/resamp_gain_1.png" alt="gain view" />
+</figure>
+</section>
+
 <section class="slide level2">
 
 <figure>
-<img src="images/resamp_gain_1.png" alt="gain view" /><figcaption>gain view</figcaption>
+<img src="images/resamp_gain_2.png" alt="gain view" />
 </figure>
 </section>
+
+<section class="slide level2">
+
+<svg class="annotation">
+  <circle cx="125" cy="380" r="31" />
+</svg>
+
+<figure>
+<img src="images/resamp_gain_3.png" alt="gain view" />
+</figure>
+</section>
+
+<section class="slide level2">
+
+<svg class="annotation">
+  <rect x="300" y="490" width="500" height="35" />
+</svg>
+
+<figure>
+<img src="images/resamp_gain_4.png" alt="gain view" />
+</figure>
+</section>
+
 <section class="slide level2">
 
 <figure>
-<img src="images/resamp_gain_2.png" alt="gain view" /><figcaption>gain view</figcaption>
+<img src="images/resamp_preview.png" alt="gain view" />
 </figure>
 </section>
-<section class="slide level2">
 
-<figure>
-<img src="images/resamp_gain_3.png" alt="gain view" /><figcaption>gain view</figcaption>
-</figure>
-</section>
-<section class="slide level2">
-
-<figure>
-<img src="images/resamp_gain_4.png" alt="gain view" /><figcaption>gain view</figcaption>
-</figure>
-</section>
-<section class="slide level2">
-
-<figure>
-<img src="images/resamp_preview.png" alt="gain view" /><figcaption>gain view</figcaption>
-</figure>
-</section>
 <section id="high-confidence" class="slide level2">
 <h2>High confidence</h2>
 <table>
@@ -693,7 +781,7 @@ What's cool is this is a loop. We can continuously add more samples
   </div>
   <div class="column">
     <p>thomas.torsney-weir@univie.ac.at</p>
-    <p>http://tuner.cs.univie.ac.at/</p>
+    <p><a href="http://tuner.cs.univie.ac.at/">http://tuner.cs.univie.ac.at/</a></p>
   </div>
 </div>
 </section>
